@@ -1,4 +1,4 @@
-package com.bagmanovam.dependencyinjection.ui.theme
+package com.bagmanovam.dependencyinjection.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

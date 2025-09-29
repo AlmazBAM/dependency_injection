@@ -1,6 +1,5 @@
-package com.bagmanovam.dependencyinjection.ui.theme
+package com.bagmanovam.dependencyinjection.presentation.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
