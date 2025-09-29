@@ -25,8 +25,8 @@ class MainActivity : ComponentActivity() {
 //        ServiceLocator.exampleViewModel
 //    }
 
-    private val exampleViewModel by viewModels<ExampleViewModel > {
-        ServiceLocator.provideViewModelFactory()
+    private val exampleViewModel by viewModels<ExampleViewModel> {
+        ExampleViewModel.Factory(ServiceLocator.provideExampleUseCase())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
