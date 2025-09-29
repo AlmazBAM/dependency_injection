@@ -17,7 +17,7 @@ object ServiceLocator {
         return appContext ?: throw IllegalArgumentException("ServiceLocator not initialized. Call first init()")
     }
 
-    private val database by lazy { DataBase(getContext()) }
+    private val database by lazy { DataBase.getInstance(getContext()) }
     private val repository by lazy { ExampleRepositoryImpl(database) }
     private val exampleUseCase by lazy { ExampleUseCase(repository) }
 
