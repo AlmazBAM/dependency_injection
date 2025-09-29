@@ -18,7 +18,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bagmanovam.dependencyinjection.di.ServiceLocator
 import com.bagmanovam.dependencyinjection.domain.Item
 import com.bagmanovam.dependencyinjection.presentation.ui.theme.DependencyInjectionTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 //    private val exampleViewModel by lazy {
@@ -26,8 +29,11 @@ class MainActivity : ComponentActivity() {
 //    }
 
     private val exampleViewModel by viewModels<ExampleViewModel> {
-        ExampleViewModel.Factory(ServiceLocator.provideExampleUseCase())
+        ExampleViewModel.FactoryProvider(ServiceLocator.provideExampleUseCase(), Item(2))
     }
+
+    @Inject
+    lateinit var exampleViewModelFactory: ExampleViewModel.Factory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     ExampleScreen(
                         modifier = Modifier.padding(innerPadding),
                         viewModel =  viewModel {
-                            exampleViewModel
+                            exampleViewModelFactory.create(Item(1))
                         })
                 }
             }
@@ -57,7 +63,7 @@ fun ExampleScreen(
     ) {
         Button(
             onClick = {
-                viewModel.exampleMethod(Item(0))
+                viewModel.exampleMethod()
             }
         ) {
             Text(
